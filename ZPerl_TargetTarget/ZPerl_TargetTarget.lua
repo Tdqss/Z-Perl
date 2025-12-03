@@ -60,7 +60,7 @@ XPerl_RequestConfig(function(new)
 	if XPerl_PetTarget then
 		XPerl_PetTarget.conf = conf.pettarget
 	end
-end, "$Revision: @file-revision@ $")
+end, "$Revision:  $")
 
 local buffSetup
 

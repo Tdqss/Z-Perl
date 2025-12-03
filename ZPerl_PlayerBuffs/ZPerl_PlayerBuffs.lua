@@ -6,7 +6,7 @@ local conf, pconf
 XPerl_RequestConfig(function(new)
 	conf = new
 	pconf = new.player
-end, "$Revision: @file-revision@ $")
+end, "$Revision:  $")
 
 --local playerClass
 

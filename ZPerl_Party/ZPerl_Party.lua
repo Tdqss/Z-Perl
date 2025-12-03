@@ -13,7 +13,7 @@ XPerl_RequestConfig(function(new)
 	for k, v in pairs(PartyFrames) do
 		v.conf = pconf
 	end
-end, "$Revision: @file-revision@ $")
+end, "$Revision:  $")
 
 local percD = "%d"..PERCENT_SYMBOL
 

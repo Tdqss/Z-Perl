@@ -6,7 +6,7 @@ local init_done, gradient, conf, doneOptions
 local errorCount = 0
 XPerl_RequestConfig(function(new)
 	conf = new
-end, "$Revision: @file-revision@ $")
+end, "$Revision:  $")
 
 local _, _, _, clientRevision = GetBuildInfo()
 

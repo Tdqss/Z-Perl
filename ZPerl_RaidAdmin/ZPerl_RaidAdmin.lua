@@ -4,7 +4,7 @@
 
 local AddonName, Addon = ...
 
-XPerl_SetModuleRevision("$Revision: @file-revision@ $")
+XPerl_SetModuleRevision("$Revision:  $")
 
 local IsRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 

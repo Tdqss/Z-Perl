@@ -5,7 +5,7 @@
 local conf
 XPerl_RequestConfig(function(new)
 	conf = new
-end, "$Revision: @file-revision@ $")
+end, "$Revision:  $")
 
 local IsRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 

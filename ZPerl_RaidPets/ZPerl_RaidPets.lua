@@ -9,7 +9,7 @@ XPerl_RequestConfig(function(New)
 	conf = New
 	raidconf = New.raid
 	rconf = New.raidpet
-end, "$Revision: @file-revision@ $")
+end, "$Revision:  $")
 
 --local new, del, copy = XPerl_GetReusableTable, XPerl_FreeTable, XPerl_CopyTable
 
@@ -46,7 +46,7 @@ local SecureButton_GetUnit = SecureButton_GetUnit
 local LOCALIZED_CLASS_NAMES_MALE = LOCALIZED_CLASS_NAMES_MALE
 local CLASS_COUNT = 0
 for k, v in pairs(LOCALIZED_CLASS_NAMES_MALE) do
-	if k ~= "Adventurer" then
+	if k ~= "Adventurer" and k ~= "TRAVELER" then
 		CLASS_COUNT = CLASS_COUNT + 1
 	end
 end

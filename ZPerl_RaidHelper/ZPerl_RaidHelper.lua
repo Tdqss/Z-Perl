@@ -2,7 +2,7 @@
 -- Author: Resike
 -- License: GNU GPL v3, 29 June 2007 (see LICENSE.txt)
 
-XPerl_SetModuleRevision("$Revision: @file-revision@ $")
+XPerl_SetModuleRevision("$Revision:  $")
 
 ZPerl_MainTanks = {}
 local MainTankCount, blizzMTanks, ctraTanks = 0, 0, 0

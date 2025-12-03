@@ -2,7 +2,7 @@
 -- Author: Resike
 -- License: GNU GPL v3, 18 October 2014
 
-XPerl_SetModuleRevision("$Revision: @file-revision@ $")
+XPerl_SetModuleRevision("$Revision:  $")
 
 -- XPerl_SlashHandler
 local function XPerl_SlashHandler(msg)

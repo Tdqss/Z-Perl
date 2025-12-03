@@ -12,7 +12,7 @@ XPerl_RequestConfig(function(new)
 	if (XPerl_Player) then
 		XPerl_Player.conf = conf.player
 	end
-end, "$Revision: @file-revision@ $")
+end, "$Revision:  $")
 
 local perc1F = "%.1f"..PERCENT_SYMBOL
 local percD = "%.0f"..PERCENT_SYMBOL

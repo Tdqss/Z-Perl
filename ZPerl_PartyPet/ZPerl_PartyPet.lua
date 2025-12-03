@@ -12,7 +12,7 @@ XPerl_RequestConfig(function(New)
 	for k, v in pairs(PartyPetFrames) do
 		v.conf = pconf
 	end
-end, "$Revision: @file-revision@ $")
+end, "$Revision:  $")
 
 --local new, del, copy = XPerl_GetReusableTable, XPerl_FreeTable, XPerl_CopyTable
 

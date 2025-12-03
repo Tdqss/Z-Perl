@@ -6,7 +6,7 @@ local playerClass, playerName, playerGUID
 local conf
 XPerl_RequestConfig(function(new)
 	conf = new
-end, "$Revision: @file-revision@ $")
+end, "$Revision:  $")
 
 local _, _, _, clientRevision = GetBuildInfo()
 

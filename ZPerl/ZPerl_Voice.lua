@@ -9,7 +9,7 @@ local conf
 XPerl_RequestConfig(function(new)
 	conf = new
 	voice:RepositionAll()
-end, "$Revision: @file-revision@ $")
+end, "$Revision:  $")
 
 voice.frames = {}
 voice.permenantUnits = {}

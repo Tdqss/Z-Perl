@@ -10,7 +10,7 @@ local conf, rconf
 XPerl_RequestConfig(function(new)
 	conf = new.custom
 	rconf = new.raid
-end, "$Revision: @file-revision@ $")
+end, "$Revision:  $")
 
 local IsClassic = WOW_PROJECT_ID >= WOW_PROJECT_CLASSIC
 local IsVanillaClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC

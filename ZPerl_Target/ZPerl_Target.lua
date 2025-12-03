@@ -23,7 +23,7 @@ XPerl_RequestConfig(function(new)
 	if (XPerl_PetTarget) then
 		XPerl_PetTarget.conf = conf.pettarget
 	end
-end, "$Revision: @file-revision@ $")
+end, "$Revision:  $")
 
 local IsRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 local IsClassic = WOW_PROJECT_ID >= WOW_PROJECT_CLASSIC

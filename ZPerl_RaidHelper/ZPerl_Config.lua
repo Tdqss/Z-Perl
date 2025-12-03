@@ -2,7 +2,7 @@
 -- Author: Resike
 -- License: GNU GPL v3, 29 June 2007 (see LICENSE.txt)
 
-XPerl_SetModuleRevision("$Revision: @file-revision@ $")
+XPerl_SetModuleRevision("$Revision:  $")
 
 function XPerl_Message(...)
 	DEFAULT_CHAT_FRAME:AddMessage(XPERL_MSG_PREFIX.."- "..format(...))

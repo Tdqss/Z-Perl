@@ -23,7 +23,7 @@ XPerl_RequestConfig(function(newConf)
 	conf = newConf
 	rconf = conf.raid
 	cconf = conf.custom
-end, "$Revision: @file-revision@ $")
+end, "$Revision:  $")
 
 --[[if type(RegisterAddonMessagePrefix) == "function" then
 	RegisterAddonMessagePrefix("CTRA")
@@ -128,7 +128,7 @@ ZPerl_Roster = { }
 local LOCALIZED_CLASS_NAMES_MALE = LOCALIZED_CLASS_NAMES_MALE
 local CLASS_COUNT = 0
 for k, v in pairs(LOCALIZED_CLASS_NAMES_MALE) do
-	if k ~= "Adventurer" then
+	if k ~= "Adventurer" and k ~= "TRAVELER" then
 		CLASS_COUNT = CLASS_COUNT + 1
 	end
 end
