@@ -21,6 +21,8 @@ local _, _, _, clientRevision = GetBuildInfo()
 
 local IsRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 local IsClassic = WOW_PROJECT_ID >= WOW_PROJECT_CLASSIC
+local IsBCClassic = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+local IsClassicOrBCC = IsClassic or IsBCClassic
 local IsVanillaClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 
 local min = min
@@ -111,7 +113,7 @@ local function overrideToggle(value)
 			end
 		else
 			if (not pconf.bar.Overrided) then
-				if IsRetail then
+				if IsRetail or IsBCClassic then
 					PlayerCastingBarFrame:Hide()
 					PlayerCastingBarFrame:UnregisterAllEvents()
 				else
@@ -180,7 +182,7 @@ function XPerl_ArcaneBar_OnEvent(self, event, unit, ...)
 		end
 
 		self:SetStatusBarColor(barColours.main.r, barColours.main.g, barColours.main.b, conf.transparency.frame)
-		if (not IsClassic and notInterruptible) then
+		if (not IsClassicOrBCC and notInterruptible) then
 			self.spellText:SetText(shield_icon..shield_icon..name:gsub(" %- No Text", "")..shield_icon..shield_icon)
 		else
 			self.spellText:SetText(name:gsub(" %- No Text", ""))
@@ -263,7 +265,7 @@ function XPerl_ArcaneBar_OnEvent(self, event, unit, ...)
 				self:Hide()
 				return
 			end
-			if (not IsClassic and notInterruptible) then
+			if (not IsClassicOrBCC and notInterruptible) then
 				self.spellText:SetText(shield_icon..shield_icon..name:gsub(" %- No Text", "")..shield_icon..shield_icon)
 			else
 				self.spellText:SetText(name:gsub(" %- No Text", ""))
@@ -295,7 +297,7 @@ function XPerl_ArcaneBar_OnEvent(self, event, unit, ...)
 		self:SetStatusBarColor(barColours.channel.r, barColours.channel.g, barColours.channel.b, conf.transparency.frame)
 		self.barSpark:Show()
 		self.barParentName:Hide()
-		if (not IsClassic and notInterruptible) then
+		if (not IsClassicOrBCC and notInterruptible) then
 			self.spellText:SetText(shield_icon..shield_icon..name:gsub(" %- No Text", "")..shield_icon..shield_icon)
 		else
 			self.spellText:SetText(name:gsub(" %- No Text", ""))

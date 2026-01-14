@@ -8,6 +8,8 @@ local IsRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 local IsPandaClassic = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
 local IsVanillaClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 local IsClassic = WOW_PROJECT_ID >= WOW_PROJECT_CLASSIC
+local IsBCClassic = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+local IsClassicOrBCC = IsClassic or IsBCClassic
 
 local LOCALIZED_CLASS_NAMES_MALE = LOCALIZED_CLASS_NAMES_MALE
 local CLASS_COUNT = 0
@@ -1076,7 +1078,7 @@ function XPerl_Options_DoRangeTooltip(self)
 	if spell then
 		local link = (C_Spell and C_Spell.GetSpellLink) and C_Spell.GetSpellLink(spell) or (GetSpellLink and GetSpellLink(spell))
 		if link then
-			if IsClassic then
+			if IsClassicOrBCC then
 				local _, _, _, _, _, _, spellID = GetSpellInfo(spell)
 				if spellID then
 					local newLink = format("spell:%d:0:0:0", spellID)
@@ -1135,7 +1137,7 @@ function XPerl_Options_DoRangeTooltipEnemy(self)
 	if spell then
 		local link = (C_Spell and C_Spell.GetSpellLink) and C_Spell.GetSpellLink(spell) or (GetSpellLink and GetSpellLink(spell))
 		if link then
-			if IsClassic then
+			if IsClassicOrBCC then
 				local _, _, _, _, _, _, spellID = GetSpellInfo(spell)
 				if spellID then
 					local newLink = format("spell:%d:0:0:0", spellID)
@@ -3035,7 +3037,7 @@ end
 
 -- customOnUpdate
 local ICON_STEP_SIZE	= 500
-local ICON_STOP_SCAN	= IsClassic and 33000 or 310000
+local ICON_STOP_SCAN	= IsClassicOrBCC and 33000 or 310000
 local function customOnUpdate(self, elapsed)
 	local db = self.iconDB
 	local ind = self.iconIndex
@@ -3192,7 +3194,7 @@ function XPerl_Options_Custom_ScanForIcons(self)
 							name = GetSpellInfo(self.spellid)
 						end
 						if link then
-							if IsClassic then
+							if IsClassicOrBCC then
 								local _, _, _, _, _, _, spellID = GetSpellInfo(self.spellid)
 								if spellID then
 									local newLink = format("spell:%d:0:0:0", spellID)

@@ -20,6 +20,8 @@ local percD = "%d"..PERCENT_SYMBOL
 local IsRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 local IsPandaClassic = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
 local IsClassic = WOW_PROJECT_ID >= WOW_PROJECT_CLASSIC
+local IsBCClassic = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+local IsClassicOrBCC = IsClassic or IsBCClassic
 local IsVanillaClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 
 local ceil = ceil
@@ -112,7 +114,7 @@ function XPerl_Party_Events_OnLoad(self)
 		"UNIT_ABSORB_AMOUNT_CHANGED",
 		"UNIT_POWER_FREQUENT",
 		"UNIT_MAXPOWER",
-		IsClassic and "UNIT_HEALTH_FREQUENT" or "UNIT_HEALTH",
+		IsClassicOrBCC and "UNIT_HEALTH_FREQUENT" or "UNIT_HEALTH",
 		"UNIT_MAXHEALTH",
 		"UNIT_LEVEL",
 		"UNIT_DISPLAYPOWER",
@@ -137,7 +139,7 @@ function XPerl_Party_Events_OnLoad(self)
 
 	UIParent:UnregisterEvent("GROUP_ROSTER_UPDATE") -- IMPORTANT! Stops raid framerate lagging when members join/leave/zone
 
-	if IsRetail then
+	if IsRetail or IsBCClassic then
 		XPerl_BlizzFrameDisable(PartyFrame)
 	else
 		for i = 1, 4 do
@@ -755,7 +757,7 @@ end
 -- UpdatePhaseIndicators
 local function UpdatePhasingDisplays(self)
 	local unit = self.partyid
-	local inPhase = not IsClassic and UnitPhaseReason(unit)
+	local inPhase = not IsClassicOrBCC and UnitPhaseReason(unit)
 
 	if ( not inPhase or not UnitExists(unit) or not UnitIsConnected(unit)) then
 		self.phasingIcon:Hide()
@@ -800,7 +802,7 @@ local function XPerl_Party_UpdatePVP(self)
 	elseif pconf.pvpIcon and factionGroup and factionGroup ~= "Neutral" and UnitIsPVP(partyid) then
 		pvpIcon:SetTexture("Interface\\TargetingFrame\\UI-PVP-"..factionGroup)
 
-		if not IsClassic and UnitIsMercenary(partyid) then
+		if not IsClassicOrBCCOrBCC and UnitIsMercenary(partyid) then
 			if factionGroup == "Horde" then
 				pvpIcon:SetTexture("Interface\\TargetingFrame\\UI-PVP-Alliance")
 			elseif factionGroup == "Alliance" then
@@ -832,7 +834,7 @@ local function XPerl_Party_UpdateCombat(self)
 			self.nameFrame.combatIcon:Hide()
 		end
 
-		if UnitIsCharmed(partyid) and UnitIsPlayer(partyid) and (not IsClassic and (self.ownerid and not UnitUsingVehicle(self.ownerid)) or true) then
+		if UnitIsCharmed(partyid) and UnitIsPlayer(partyid) and (not IsClassicOrBCCOrBCC and (self.ownerid and not UnitUsingVehicle(self.ownerid)) or true) then
 			self.nameFrame.warningIcon:Show()
 		else
 			self.nameFrame.warningIcon:Hide()
@@ -970,7 +972,7 @@ local function CheckRaid()
 		local singleGroup = XPerl_Party_SingleGroup()
 
 		if (not pconf or ((pconf.inRaid and IsInRaid()) or (pconf.smallRaid and singleGroup) or (GetNumGroupMembers() > 0 and not IsInRaid()))) then -- or GetNumGroupMembers() > 0
-			if not IsClassic then
+			if not IsClassicOrBCCOrBCC then
 				if not C_PetBattles.IsInBattle() then
 					if (not partyHeader:IsShown()) then
 						partyHeader:Show()
@@ -1015,7 +1017,7 @@ end
 local function XPerl_Party_TargetUpdateHealth(self)
 	local tf = self.targetFrame
 	local targetid = self.targetid
-	local hp, hpMax, heal, absorb = UnitIsGhost(targetid) and 1 or (UnitIsDead(targetid) and 0 or UnitHealth(targetid)), UnitHealthMax(targetid), not IsVanillaClassic and UnitGetIncomingHeals(targetid), not IsClassic and UnitGetTotalAbsorbs(targetid)
+	local hp, hpMax, heal, absorb = UnitIsGhost(targetid) and 1 or (UnitIsDead(targetid) and 0 or UnitHealth(targetid)), UnitHealthMax(targetid), not IsVanillaClassic and UnitGetIncomingHeals(targetid), not IsClassicOrBCCOrBCC and UnitGetTotalAbsorbs(targetid)
 	tf.lastHP, tf.lastHPMax, tf.lastHeal, tf.lastAbsorb = hp, hpMax, heal, absorb
 	tf.lastUpdate = GetTime()
 
@@ -1128,7 +1130,7 @@ function XPerl_Party_OnUpdate(self, elapsed)
 		end
 
 		if (pconf.target.large and self.targetFrame:IsShown()) then
-			local hp, hpMax, heal, absorb = UnitIsGhost(targetid) and 1 or (UnitIsDead(targetid) and 0 or UnitHealth(targetid)), UnitHealthMax(targetid), not IsVanillaClassic and UnitGetIncomingHeals(targetid), not IsClassic and UnitGetTotalAbsorbs(targetid)
+			local hp, hpMax, heal, absorb = UnitIsGhost(targetid) and 1 or (UnitIsDead(targetid) and 0 or UnitHealth(targetid)), UnitHealthMax(targetid), not IsVanillaClassic and UnitGetIncomingHeals(targetid), not IsClassicOrBCC and UnitGetTotalAbsorbs(targetid)
 			if (hp ~= self.targetFrame.lastHP or hpMax ~= self.targetFrame.lastHPMax or heal ~= self.targetFrame.lastHeal or absorb ~= self.targetFrame.lastAbsorb or GetTime() > self.targetFrame.lastUpdate + 5000) then
 				XPerl_Party_TargetUpdateHealth(self)
 			end

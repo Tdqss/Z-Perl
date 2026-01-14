@@ -19,6 +19,8 @@ end
 
 local IsRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 local IsClassic = WOW_PROJECT_ID >= WOW_PROJECT_CLASSIC
+local IsBCClassic = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+local IsClassicOrBCC = IsClassic or IsBCClassic
 local IsVanillaClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
 
 -- setCommon
@@ -177,7 +179,7 @@ function XPerl_Player_BuffSetup(self)
 	if (pconf.buffs.hideBlizzard) then
 		BuffFrame:UnregisterEvent("UNIT_AURA")
 		BuffFrame:Hide()
-		if not IsRetail then
+		if not IsRetail and not IsBCClassic then
 			TemporaryEnchantFrame:Hide()
 		end
 	else
