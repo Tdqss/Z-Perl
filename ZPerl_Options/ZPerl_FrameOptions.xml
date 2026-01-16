@@ -6089,9 +6089,9 @@
 											if (XPerl_Player_BuffSetup) then
 												XPerl_Player_BuffSetup(XPerl_Player)
 											end
-											if WOW_PROJECT_ID >= WOW_PROJECT_BURNING_CRUSADE_CLASSIC then
-												BuffFrame_Update()
-											end
+											--if WOW_PROJECT_ID >= WOW_PROJECT_BURNING_CRUSADE_CLASSIC then
+											--	BuffFrame_Update()
+											--end
 										end
 										XPerl_Options_RegisterProtected(self)
 									</OnLoad>
