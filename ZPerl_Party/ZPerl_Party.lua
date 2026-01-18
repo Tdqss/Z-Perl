@@ -802,7 +802,7 @@ local function XPerl_Party_UpdatePVP(self)
 	elseif pconf.pvpIcon and factionGroup and factionGroup ~= "Neutral" and UnitIsPVP(partyid) then
 		pvpIcon:SetTexture("Interface\\TargetingFrame\\UI-PVP-"..factionGroup)
 
-		if not IsClassicOrBCCOrBCC and UnitIsMercenary(partyid) then
+		if not IsClassicOrBCC and UnitIsMercenary(partyid) then
 			if factionGroup == "Horde" then
 				pvpIcon:SetTexture("Interface\\TargetingFrame\\UI-PVP-Alliance")
 			elseif factionGroup == "Alliance" then
@@ -834,7 +834,7 @@ local function XPerl_Party_UpdateCombat(self)
 			self.nameFrame.combatIcon:Hide()
 		end
 
-		if UnitIsCharmed(partyid) and UnitIsPlayer(partyid) and (not IsClassicOrBCCOrBCC and (self.ownerid and not UnitUsingVehicle(self.ownerid)) or true) then
+		if UnitIsCharmed(partyid) and UnitIsPlayer(partyid) and (not IsClassicOrBCC and (self.ownerid and not UnitUsingVehicle(self.ownerid)) or true) then
 			self.nameFrame.warningIcon:Show()
 		else
 			self.nameFrame.warningIcon:Hide()
@@ -972,7 +972,7 @@ local function CheckRaid()
 		local singleGroup = XPerl_Party_SingleGroup()
 
 		if (not pconf or ((pconf.inRaid and IsInRaid()) or (pconf.smallRaid and singleGroup) or (GetNumGroupMembers() > 0 and not IsInRaid()))) then -- or GetNumGroupMembers() > 0
-			if not IsClassicOrBCCOrBCC then
+			if not IsClassicOrBCC then
 				if not C_PetBattles.IsInBattle() then
 					if (not partyHeader:IsShown()) then
 						partyHeader:Show()
@@ -1017,7 +1017,7 @@ end
 local function XPerl_Party_TargetUpdateHealth(self)
 	local tf = self.targetFrame
 	local targetid = self.targetid
-	local hp, hpMax, heal, absorb = UnitIsGhost(targetid) and 1 or (UnitIsDead(targetid) and 0 or UnitHealth(targetid)), UnitHealthMax(targetid), not IsVanillaClassic and UnitGetIncomingHeals(targetid), not IsClassicOrBCCOrBCC and UnitGetTotalAbsorbs(targetid)
+	local hp, hpMax, heal, absorb = UnitIsGhost(targetid) and 1 or (UnitIsDead(targetid) and 0 or UnitHealth(targetid)), UnitHealthMax(targetid), not IsVanillaClassic and UnitGetIncomingHeals(targetid), not IsClassicOrBCC and UnitGetTotalAbsorbs(targetid)
 	tf.lastHP, tf.lastHPMax, tf.lastHeal, tf.lastAbsorb = hp, hpMax, heal, absorb
 	tf.lastUpdate = GetTime()
 
